@@ -14,7 +14,7 @@ app.use(express.json()); //req.body
 //createa todo
 app.post("/todos", async (req, res) => {
   try {
-    // console.log(req.body);
+    // console.error(req.body);
     const { description } = req.body;
     const newTodo = await pool.query(
       "INSERT INTO todo(description) VALUES($1) RETURNING *;",
@@ -23,7 +23,7 @@ app.post("/todos", async (req, res) => {
 
     res.json(newTodo);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 });
 
@@ -33,7 +33,7 @@ app.get("/todos", async (req, res) => {
     const allTodos = await pool.query("SELECT * FROM todo;");
     res.json(allTodos.rows);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 });
 //get a todo
@@ -45,7 +45,7 @@ app.get("/todos/:id", async (req, res) => {
     ]);
     res.json(todo.rows);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 });
 //update todo
@@ -59,7 +59,7 @@ app.put("/todos/:id", async (req, res) => {
     );
     res.json("Todo has updates");
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 });
 
@@ -71,7 +71,7 @@ app.delete("/todos/:id", async (req, res) => {
       id,
     ]);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
   res.json("Todo was deleted");
 });
