@@ -12,6 +12,7 @@ function App() {
     <Fragment>
       <div className="container">
         <InputTodo />
+        <Listtodo />
       </div>
     </Fragment>
   );
